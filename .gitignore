@@ -1,0 +1,13 @@
+/target/
+*.class
+/.idea/
+/.vscode/
+*.iml
+/.settings/
+/.project
+/.classpath
+.env
+.env.*
+*.pem
+*.key
+*.p12
