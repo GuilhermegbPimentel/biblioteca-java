@@ -11,3 +11,5 @@
 *.pem
 *.key
 *.p12
+/AGENTS.md
+/Plano_BibliotecaJava.md

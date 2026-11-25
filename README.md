@@ -1,6 +1,27 @@
 # BibliotecaJava 0.1
 
-Aplicação de console baseada no desafio da Rocketseat. O catálogo inicia em memória com três autores e cinco livros fictícios. Responda `SIM` para ver os livros disponíveis e fazer um empréstimo ou `NÃO` para sair. O programa encerra após confirmar o empréstimo. Uma nova execução restaura o catálogo inicial.
+BibliotecaJava é um sistema de empréstimos de livros pelo terminal, desenvolvido como exercício da Rocketseat. O objetivo é praticar orientação a objetos em Java ao modelar um catálogo e aplicar as regras de um empréstimo.
+
+## Funcionalidades
+
+- Inicia com um catálogo de demonstração com três autores e cinco livros fictícios.
+- Aceita `SIM` para listar os livros disponíveis com identificador, título e autor. Aceita `NÃO` ou `NAO` para sair.
+- Solicita o identificador do livro e o nome do cliente. Em caso de entrada inválida, pede a correção antes de registrar o empréstimo.
+- Registra o empréstimo, marca o livro como indisponível, atualiza a data de alteração do livro e encerra após confirmar a operação.
+
+O catálogo e os empréstimos ficam em memória. A cada execução, o catálogo volta ao estado inicial e a lista de empréstimos começa vazia.
+
+## Tecnologias
+
+- **Java 21** para a aplicação de console.
+- **Maven** para compilar, testar e empacotar o JAR executável.
+- **JUnit Jupiter** para testar as regras de empréstimo.
+
+## Organização do projeto
+
+- `src/main/java/br/dev/biblioteca/` contém a aplicação. `Main` cuida da interação com o terminal e `Biblioteca` mantém o catálogo e aplica as regras de empréstimo. `Autor`, `Livro` e `Emprestimo` representam os dados do sistema.
+- `src/test/java/br/dev/biblioteca/` contém os testes de `BibliotecaTest`.
+- `pom.xml` configura a compilação, os testes e o empacotamento.
 
 ## Compilar, testar e executar no Windows
 
@@ -48,10 +69,3 @@ $OutputEncoding = [Console]::OutputEncoding = [Text.UTF8Encoding]::new($false)
 ```
 
 O primeiro fluxo termina com uma despedida. O segundo orienta a corrigir a resposta, o identificador e o nome antes de confirmar o empréstimo.
-
-## Verificação local
-
-- Java e `javac` 21.0.10, Git 2.54.0.windows.1 e Maven 3.9.11 incluído no IntelliJ. O comando `mvn` está fora do PATH desta máquina.
-- A compilação com `javac --release 21` e a geração do JAR com `jar` passaram. Oito roteiros de terminal passaram, cobrindo recusa, variações de SIM, correção de entradas, encerramento após um empréstimo e fim de entrada.
-- Uma verificação com asserções do JDK confirmou o registro do empréstimo, as datas, a filtragem dos disponíveis, a preservação de estado nas rejeições e o encerramento com o catálogo esgotado.
-- Os comandos Maven `test` e `package` pararam ao resolver `maven-resources-plugin:3.3.1`. O ambiente bloqueou o acesso ao Maven Central com `Permission denied: getsockopt`. A execução da suíte JUnit Jupiter pelo Maven está pendente.
