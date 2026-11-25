@@ -4,7 +4,7 @@ BibliotecaJava é um sistema de empréstimos de livros pelo terminal, desenvolvi
 
 ## Funcionalidades
 
-- Inicia com um catálogo de demonstração com três autores e cinco livros fictícios.
+- Inicia com um catálogo de demonstração com quatro autores e cinco livros.
 - Aceita `SIM` para listar os livros disponíveis com identificador, título e autor. Aceita `NÃO` ou `NAO` para sair.
 - Solicita o identificador do livro e o nome do cliente. Em caso de entrada inválida, pede a correção antes de registrar o empréstimo.
 - Registra o empréstimo, marca o livro como indisponível, atualiza a data de alteração do livro e encerra após confirmar a operação.
@@ -41,6 +41,7 @@ Se usar o Maven incluído no IntelliJ IDEA 2026.1.1, execute o binário diretame
 
 ```powershell
 $maven = 'C:\Program Files\JetBrains\IntelliJ IDEA 2026.1.1\plugins\maven\lib\maven3\bin\mvn.cmd'
+
 & $maven -version
 & $maven '-Dmaven.repo.local=target/maven-repository' -B test
 & $maven '-Dmaven.repo.local=target/maven-repository' -B package
@@ -52,8 +53,10 @@ Use o caminho do seu JDK 21. Estes comandos geram o JAR diretamente a partir do 
 
 ```powershell
 $jdk = 'C:\Program Files\Java\jdk-21.0.10'
-New-Item -ItemType Directory -Force target/classes | Out-Null
+
 $fontes = @(Get-ChildItem src/main/java -Recurse -Filter *.java | ForEach-Object FullName)
+
+New-Item -ItemType Directory -Force target/classes | Out-Null
 & "$jdk\bin\javac.exe" --release 21 -encoding UTF-8 -d target/classes $fontes
 & "$jdk\bin\jar.exe" --create --file target/biblioteca-java-0.1.0.jar --main-class br.dev.biblioteca.Main -C target/classes .
 java -jar target/biblioteca-java-0.1.0.jar
@@ -63,9 +66,9 @@ Para reproduzir dois fluxos por entrada redirecionada no PowerShell:
 
 ```powershell
 $OutputEncoding = [Console]::OutputEncoding = [Text.UTF8Encoding]::new($false)
+
 '  nÃo  ' | java '-Dstdout.encoding=UTF-8' -jar target/biblioteca-java-0.1.0.jar
-'talvez', ' sim ', 'abc', '999', '1', '   ', 'Bia das Flores' |
-    java '-Dstdout.encoding=UTF-8' -jar target/biblioteca-java-0.1.0.jar
+'talvez', ' sim ', 'abc', '999', '1', '   ', 'Bia das Flores' | java '-Dstdout.encoding=UTF-8' -jar target/biblioteca-java-0.1.0.jar
 ```
 
 O primeiro fluxo termina com uma despedida. O segundo orienta a corrigir a resposta, o identificador e o nome antes de confirmar o empréstimo.

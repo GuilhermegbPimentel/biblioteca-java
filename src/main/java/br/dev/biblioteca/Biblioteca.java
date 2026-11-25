@@ -1,7 +1,6 @@
 package br.dev.biblioteca;
 
 import java.time.Instant;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,18 +10,19 @@ public class Biblioteca {
     private final List<Emprestimo> emprestimos = new ArrayList<>();
 
     public Biblioteca() {
-        Autor lia = new Autor(1, "Lia Ventomar", LocalDate.of(1978, 4, 12));
-        Autor teo = new Autor(2, "Teo Valeclaro", LocalDate.of(1984, 9, 23));
-        Autor nina = new Autor(3, "Nina Campoluz", LocalDate.of(1990, 2, 8));
-        autores.addAll(List.of(lia, teo, nina));
+        Autor robertMartin = new Autor(1, "Robert C. Martin", null);
+        Autor joshuaBloch = new Autor(2, "Joshua Bloch", null);
+        Autor martinFowler = new Autor(3, "Martin Fowler", null);
+        Autor kentBeck = new Autor(4, "Kent Beck", null);
+        autores.addAll(List.of(robertMartin, joshuaBloch, martinFowler, kentBeck));
 
         Instant cadastro = Instant.now();
         livros.addAll(List.of(
-                new Livro(1, "O Mapa das Marés", lia, cadastro),
-                new Livro(2, "Cartas do Farol", lia, cadastro),
-                new Livro(3, "A Estação de Papel", teo, cadastro),
-                new Livro(4, "O Jardim das Horas", nina, cadastro),
-                new Livro(5, "A Ponte de Vidro", nina, cadastro)
+                new Livro(1, "Clean Code", robertMartin, cadastro),
+                new Livro(2, "Test Driven Development: By Example", kentBeck, cadastro),
+                new Livro(3, "Effective Java", joshuaBloch, cadastro),
+                new Livro(4, "Refactoring: Improving the Design of Existing Code", martinFowler, cadastro),
+                new Livro(5, "UML Distilled", martinFowler, cadastro)
         ));
     }
 
